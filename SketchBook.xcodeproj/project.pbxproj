@@ -23,7 +23,18 @@
 		38583779238047260094449E /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38583778238047260094449E /* HomeNavigationBar.swift */; };
 		3858377B238129C70094449E /* NewSketchPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3858377A238129C70094449E /* NewSketchPopupView.swift */; };
 		3858378123816F290094449E /* NewSketchPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3858378023816F290094449E /* NewSketchPopupView.xib */; };
+		5B1BDE7D238717520092F9C8 /* SketchBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1BDE7C238717520092F9C8 /* SketchBookTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5B1BDE7F238717520092F9C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3839ED0C238037D30001981F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3839ED13238037D30001981F;
+			remoteInfo = SketchBook;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		380450952383D1AD00A51802 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
@@ -44,10 +55,20 @@
 		38583778238047260094449E /* HomeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
 		3858377A238129C70094449E /* NewSketchPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSketchPopupView.swift; sourceTree = "<group>"; };
 		3858378023816F290094449E /* NewSketchPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewSketchPopupView.xib; sourceTree = "<group>"; };
+		5B1BDE7A238717520092F9C8 /* SketchBookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SketchBookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B1BDE7C238717520092F9C8 /* SketchBookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchBookTests.swift; sourceTree = "<group>"; };
+		5B1BDE7E238717520092F9C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3839ED11238037D30001981F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B1BDE77238717520092F9C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -127,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				3839ED16238037D30001981F /* SketchBook */,
+				5B1BDE7B238717520092F9C8 /* SketchBookTests */,
 				3839ED15238037D30001981F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -135,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				3839ED14238037D30001981F /* SketchBook.app */,
+				5B1BDE7A238717520092F9C8 /* SketchBookTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -161,6 +184,15 @@
 			path = DataModels;
 			sourceTree = "<group>";
 		};
+		5B1BDE7B238717520092F9C8 /* SketchBookTests */ = {
+			isa = PBXGroup;
+			children = (
+				5B1BDE7C238717520092F9C8 /* SketchBookTests.swift */,
+				5B1BDE7E238717520092F9C8 /* Info.plist */,
+			);
+			path = SketchBookTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -181,18 +213,40 @@
 			productReference = 3839ED14238037D30001981F /* SketchBook.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5B1BDE79238717520092F9C8 /* SketchBookTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5B1BDE83238717520092F9C8 /* Build configuration list for PBXNativeTarget "SketchBookTests" */;
+			buildPhases = (
+				5B1BDE76238717520092F9C8 /* Sources */,
+				5B1BDE77238717520092F9C8 /* Frameworks */,
+				5B1BDE78238717520092F9C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5B1BDE80238717520092F9C8 /* PBXTargetDependency */,
+			);
+			name = SketchBookTests;
+			productName = SketchBookTests;
+			productReference = 5B1BDE7A238717520092F9C8 /* SketchBookTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		3839ED0C238037D30001981F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1110;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = corykim0829;
 				TargetAttributes = {
 					3839ED13238037D30001981F = {
 						CreatedOnToolsVersion = 11.2;
+					};
+					5B1BDE79238717520092F9C8 = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = 3839ED13238037D30001981F;
 					};
 				};
 			};
@@ -210,6 +264,7 @@
 			projectRoot = "";
 			targets = (
 				3839ED13238037D30001981F /* SketchBook */,
+				5B1BDE79238717520092F9C8 /* SketchBookTests */,
 			);
 		};
 /* End PBXProject section */
@@ -224,6 +279,13 @@
 				3839ED21238037D70001981F /* Assets.xcassets in Resources */,
 				380450982383DAC900A51802 /* HomeViewController.xib in Resources */,
 				383CC4022383FE56009FCF52 /* SketchViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5B1BDE78238717520092F9C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,7 +310,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5B1BDE76238717520092F9C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B1BDE7D238717520092F9C8 /* SketchBookTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5B1BDE80238717520092F9C8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3839ED13238037D30001981F /* SketchBook */;
+			targetProxy = 5B1BDE7F238717520092F9C8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3839ED22238037D70001981F /* LaunchScreen.storyboard */ = {
@@ -418,6 +496,46 @@
 			};
 			name = Release;
 		};
+		5B1BDE81238717520092F9C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SketchBookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kr.corykim0829.SketchBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SketchBook.app/SketchBook";
+			};
+			name = Debug;
+		};
+		5B1BDE82238717520092F9C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = SketchBookTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kr.corykim0829.SketchBookTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SketchBook.app/SketchBook";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -435,6 +553,15 @@
 			buildConfigurations = (
 				3839ED29238037D70001981F /* Debug */,
 				3839ED2A238037D70001981F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5B1BDE83238717520092F9C8 /* Build configuration list for PBXNativeTarget "SketchBookTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B1BDE81238717520092F9C8 /* Debug */,
+				5B1BDE82238717520092F9C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
