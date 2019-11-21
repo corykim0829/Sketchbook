@@ -31,6 +31,15 @@ class SketchView: UIView {
         pathArray.forEach({ $0.draw() })
     }
     
+    func changeTool(_ toolType: SketchToolType) {
+        switch toolType {
+        case .brush:
+            drawTool = .brush
+        case .eraser:
+            drawTool = .eraser
+        }
+    }
+    
     private func getCurrentTool() -> SketchTool? {
         switch drawTool {
         case .brush:

@@ -17,6 +17,9 @@
 		383CC4022383FE56009FCF52 /* SketchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383CC4012383FE56009FCF52 /* SketchViewController.xib */; };
 		383CC40423852FD1009FCF52 /* SketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CC40323852FD1009FCF52 /* SketchView.swift */; };
 		383CC407238535DE009FCF52 /* SketchTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CC406238535DE009FCF52 /* SketchTool.swift */; };
+		383CC409238672A3009FCF52 /* SketchToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CC408238672A3009FCF52 /* SketchToolBar.swift */; };
+		383CC40B23868673009FCF52 /* BrushPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CC40A23868673009FCF52 /* BrushPickerView.swift */; };
+		383CC40D23868969009FCF52 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383CC40C23868969009FCF52 /* ColorPickerView.swift */; };
 		38583779238047260094449E /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38583778238047260094449E /* HomeNavigationBar.swift */; };
 		3858377B238129C70094449E /* NewSketchPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3858377A238129C70094449E /* NewSketchPopupView.swift */; };
 		3858378123816F290094449E /* NewSketchPopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3858378023816F290094449E /* NewSketchPopupView.xib */; };
@@ -35,6 +38,9 @@
 		383CC4012383FE56009FCF52 /* SketchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SketchViewController.xib; sourceTree = "<group>"; };
 		383CC40323852FD1009FCF52 /* SketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchView.swift; sourceTree = "<group>"; };
 		383CC406238535DE009FCF52 /* SketchTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchTool.swift; sourceTree = "<group>"; };
+		383CC408238672A3009FCF52 /* SketchToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchToolBar.swift; sourceTree = "<group>"; };
+		383CC40A23868673009FCF52 /* BrushPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushPickerView.swift; sourceTree = "<group>"; };
+		383CC40C23868969009FCF52 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		38583778238047260094449E /* HomeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
 		3858377A238129C70094449E /* NewSketchPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSketchPopupView.swift; sourceTree = "<group>"; };
 		3858378023816F290094449E /* NewSketchPopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewSketchPopupView.xib; sourceTree = "<group>"; };
@@ -110,6 +116,9 @@
 			isa = PBXGroup;
 			children = (
 				383CC40323852FD1009FCF52 /* SketchView.swift */,
+				383CC408238672A3009FCF52 /* SketchToolBar.swift */,
+				383CC40A23868673009FCF52 /* BrushPickerView.swift */,
+				383CC40C23868969009FCF52 /* ColorPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -229,8 +238,11 @@
 				3839ED1C238037D30001981F /* HomeViewController.swift in Sources */,
 				380450962383D1AD00A51802 /* Constraints.swift in Sources */,
 				383CC407238535DE009FCF52 /* SketchTool.swift in Sources */,
+				383CC409238672A3009FCF52 /* SketchToolBar.swift in Sources */,
 				3839ED18238037D30001981F /* AppDelegate.swift in Sources */,
 				383CC4002383FE47009FCF52 /* SketchViewController.swift in Sources */,
+				383CC40D23868969009FCF52 /* ColorPickerView.swift in Sources */,
+				383CC40B23868673009FCF52 /* BrushPickerView.swift in Sources */,
 				3858377B238129C70094449E /* NewSketchPopupView.swift in Sources */,
 				383CC40423852FD1009FCF52 /* SketchView.swift in Sources */,
 			);

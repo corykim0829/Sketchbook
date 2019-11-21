@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, NewSketchDelegate {
+class HomeViewController: UIViewController {
     
     private let blackView = UIView()
     private let newSketchPopupView = NewSketchPopupView(frame: CGRect(x: 0, y: 0, width: 240, height: 300))
@@ -16,7 +16,10 @@ class HomeViewController: UIViewController, NewSketchDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        newSketchPopupView.delegate = self
+        newSketchPopupView.newBtnTouchedWorker = { [weak self] in
+            self?.didTabToNewSketch()
+        }
+
         setupUI()
     }
     

@@ -8,13 +8,10 @@
 
 import UIKit
 
-protocol NewSketchDelegate {
-    func didTabToNewSketch()
-}
-
 class NewSketchPopupView: UIView {
     private let xibName = "NewSketchPopupView"
-    var delegate: NewSketchDelegate?
+    
+    var newBtnTouchedWorker: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,6 +31,6 @@ class NewSketchPopupView: UIView {
     }
     
     @IBAction func toNewSketchTapped(_ sender: Any) {
-        delegate?.didTabToNewSketch()
+        newBtnTouchedWorker?()
     }
 }
