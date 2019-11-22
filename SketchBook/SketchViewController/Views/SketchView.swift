@@ -24,11 +24,27 @@ class SketchView: UIView {
     
     private var currentPoint: CGPoint?
     private var previousPoint: CGPoint?
+    
+    private var imageOfPath: UIImage?
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        backgroundColor = .clear
+    }
 
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
-        pathArray.forEach({ $0.draw() })
+        imageOfPath?.draw(in: self.bounds)
+        currentTool?.draw()
     }
     
     func changeTool(_ toolType: SketchToolType) {
@@ -40,12 +56,24 @@ class SketchView: UIView {
         }
     }
     
+    func changeLineWidth(_ strokeWidth: CGFloat) {
+        lineWidth = strokeWidth
+    }
+    
+    func changeLineAlpha(_ colorAlpha: CGFloat) {
+        lineAlpha = colorAlpha
+    }
+    
+    func changeLineColor(_ color: UIColor) {
+        lineColor = color
+    }
+    
     private func getCurrentTool() -> SketchTool? {
         switch drawTool {
         case .brush:
             return BrushTool()
         case .eraser:
-            return nil
+            return EraserTool()
         }
     }
     
@@ -89,6 +117,31 @@ class SketchView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        touchesMoved(touches, with: event)
+        pathToImage()
+        setNeedsDisplay()
         currentTool = nil
+    }
+    
+    private func pathToImage() {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
+        
+        imageOfPath?.draw(in: self.bounds)
+        currentTool?.draw()
+        
+        imageOfPath = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+    }
+    
+    var currentLineWidth: CGFloat {
+        return lineWidth
+    }
+    
+    var currentLineColor: UIColor {
+        return lineColor
+    }
+    
+    var currentLineAlpha: CGFloat {
+        return lineAlpha
     }
 }

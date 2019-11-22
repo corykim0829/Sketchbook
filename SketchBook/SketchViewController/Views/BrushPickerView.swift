@@ -21,6 +21,7 @@ class BrushPickerView: UIView {
         let slider = UISlider()
         slider.minimumValue = 1
         slider.maximumValue = 30
+        slider.value = 5
         slider.addTarget(self, action: #selector(handleStrokeWidthChanged), for: .valueChanged)
         return slider
     }()
@@ -39,6 +40,10 @@ class BrushPickerView: UIView {
     
     @objc private func handleStrokeWidthChanged() {
         strokeWidthSliderWorker?(CGFloat(strokeWidthSlider.value))
+    }
+    
+    func setCurrentLineWidth(_ value: CGFloat) {
+        strokeWidthSlider.value = Float(value)
     }
     
     override init(frame: CGRect) {

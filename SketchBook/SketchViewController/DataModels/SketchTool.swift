@@ -9,11 +9,13 @@
 import UIKit
 
 protocol SketchTool {
+    var path: CGMutablePath { get set }
     var lineColor: UIColor { get set }
     var lineWidth: CGFloat { get set }
     var lineAlpha: CGFloat { get set }
     
     func initializeFirstPoint(_ point: CGPoint)
+    func moveToNextPoint(previousPoint: CGPoint, currentPoint: CGPoint)
     func draw()
 }
 
@@ -55,5 +57,19 @@ class BrushTool: UIBezierPath, SketchTool {
         context.setStrokeColor(lineColor.cgColor)
         context.setBlendMode(.normal)
         context.strokePath()
+    }
+}
+
+class EraserTool: BrushTool {
+    
+    override func draw() {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        
+        context.saveGState()
+        context.addPath(path)
+        context.setLineWidth(lineWidth)
+        context.setBlendMode(.clear)
+        context.strokePath()
+        context.restoreGState()
     }
 }

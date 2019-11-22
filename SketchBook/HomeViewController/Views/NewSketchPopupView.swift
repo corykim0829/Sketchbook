@@ -28,6 +28,8 @@ class NewSketchPopupView: UIView {
             view.frame = self.bounds
             self.addSubview(view)
         }
+        clipsToBounds = true
+        layer.cornerRadius = 8
     }
     
     @IBAction func toNewSketchTapped(_ sender: Any) {

@@ -10,11 +10,54 @@ import UIKit
 
 class ColorPickerView: UIView {
     
-    private let colorPicker: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .red
-        view.layer.cornerRadius = 8
-        return view
+    private let colorPickerLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.text = "Color"
+        label.font = .systemFont(ofSize: 14, weight: .medium)
+        return label
+    }()
+    
+    private func randomColorButtons(_ rangeOfRGB: ClosedRange<Int>) -> UIButton {
+        let button = UIButton(type: .system)
+        let r = Int.random(in: rangeOfRGB)
+        let g = Int.random(in: rangeOfRGB)
+        let b = Int.random(in: rangeOfRGB)
+        let color = UIColor(displayP3Red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1)
+        button.backgroundColor = color
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.widthAnchor.constraint(greaterThanOrEqualTo: button.heightAnchor).isActive = true
+        button.addTarget(self, action: #selector(handlePickColor), for: .touchUpInside)
+        return button
+    }
+    
+    @objc private func handlePickColor(button: UIButton) {
+        guard let color = button.backgroundColor else { return }
+        
+        colorPickerWorker?(color)
+    }
+    
+    private func randomColorButtonsHorizontalStackView(_ rangeOfRGB: ClosedRange<Int>) -> UIStackView {
+        let stackView = UIStackView()
+        for _ in 0..<5 {
+            stackView.addArrangedSubview(randomColorButtons(rangeOfRGB))
+        }
+        stackView.spacing = 2
+        stackView.distribution = .fillEqually
+        return stackView
+    }
+    
+    private lazy var colorStackView: UIStackView = {
+        let stackView = UIStackView()
+        for _ in 0..<2 {
+            stackView.addArrangedSubview(randomColorButtonsHorizontalStackView(0...255))
+        }
+        if let firstLineSV = stackView.arrangedSubviews.first as? UIStackView {
+            firstLineSV.arrangedSubviews.first?.backgroundColor = .black
+        }
+        stackView.axis = .vertical
+        stackView.spacing = 2
+        stackView.distribution = .fillEqually
+        return stackView
     }()
     
     private let colorAlphaLabel: UILabel = {
@@ -28,13 +71,15 @@ class ColorPickerView: UIView {
         let slider = UISlider()
         slider.minimumValue = 0
         slider.maximumValue = 1
+        slider.value = 1
         slider.addTarget(self, action: #selector(handleColorAlphaChanged), for: .valueChanged)
         return slider
     }()
     
     private lazy var stackView: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [
-            colorPicker,
+            colorPickerLabel,
+            colorStackView,
             colorAlphaLabel,
             colorAlphaSlider
         ])
@@ -43,10 +88,15 @@ class ColorPickerView: UIView {
         return sv
     }()
     
+    var colorPickerWorker: ((UIColor) -> Void)?
     var colorAlphaSliderWorker: ((CGFloat) -> Void)?
     
     @objc private func handleColorAlphaChanged() {
         colorAlphaSliderWorker?(CGFloat(colorAlphaSlider.value))
+    }
+    
+    func setCurrentLineAlpha(_ value: CGFloat) {
+        colorAlphaSlider.value = Float(value)
     }
 
     override init(frame: CGRect) {
@@ -69,7 +119,7 @@ class ColorPickerView: UIView {
         layer.borderWidth = 0.5
         layer.cornerRadius = 16
         constrainWidth(200)
-        constrainHeight(200)
+        constrainHeight(160)
         
         addSubview(stackView)
         stackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 16, left: 16, bottom: 12, right: 16))

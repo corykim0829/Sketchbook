@@ -29,7 +29,23 @@ class SketchViewController: UIViewController {
         super.viewDidLoad()
 
         setupToolBarWorkers()
+        setupToolBarPopupWorkers()
         setupUI()
+    }
+    
+    private func setupToolBarPopupWorkers() {
+        colorPickerView.colorPickerWorker = { [weak self] (lineColor) in
+            self?.sketchView.changeTool(.brush)
+            self?.sketchView.changeLineColor(lineColor)
+            self?.sketchToolBar.changeColorOfColorButton(to: lineColor)
+            self?.handleDismiss()
+        }
+        colorPickerView.colorAlphaSliderWorker = { [weak self] (alphaValue) in
+            self?.sketchView.changeLineAlpha(alphaValue)
+        }
+        brushPickerView.strokeWidthSliderWorker = { [weak self] (widthValue) in
+            self?.sketchView.changeLineWidth(widthValue)
+        }
     }
     
     private func setupToolBarWorkers() {
@@ -47,12 +63,15 @@ class SketchViewController: UIViewController {
     
     private func showColorPickerView() {
         view.addSubview(transparentView)
+        _ = sketchView.currentLineColor
+        colorPickerView.setCurrentLineAlpha(sketchView.currentLineAlpha)
         view.addSubview(colorPickerView)
         colorPickerView.anchor(top: sketchToolBar.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 8, left: 8, bottom: 0, right: 0))
     }
     
     private func showBrushPickerView() {
         view.addSubview(transparentView)
+        brushPickerView.setCurrentLineWidth(sketchView.currentLineWidth)
         view.addSubview(brushPickerView)
         brushPickerView.anchor(top: sketchToolBar.bottomAnchor, leading: view.leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 8, left: 8, bottom: 0, right: 0))
     }
@@ -62,6 +81,7 @@ class SketchViewController: UIViewController {
     }
     
     private func setupUI() {
+        view.backgroundColor = .white
         view.addSubview(statusCoverBar)
         statusCoverBar.backgroundColor = .yellow
         view.addSubview(sketchToolBar)

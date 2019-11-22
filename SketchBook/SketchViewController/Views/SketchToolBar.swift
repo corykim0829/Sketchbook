@@ -10,25 +10,30 @@ import UIKit
 
 class SketchToolBar: UIView {
     
-    private func generateButton(selector: Selector, color: UIColor, text: String) -> UIButton {
+    private func generateButton(selector: Selector, color: UIColor = .clear, text: String = "", image: UIImage?) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle(text, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-        button.titleLabel?.textColor = .white
+        if let image = image {
+            button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setTitleColor(.white, for: .normal)
         button.constrainWidth(32)
         button.constrainHeight(32)
+        button.layer.cornerRadius = 32 / 2
         button.backgroundColor = color
         button.addTarget(self, action: selector, for: .touchUpInside)
         return button
     }
     
-    private lazy var colorButton: UIButton = generateButton(selector: #selector(handleColorBtnTouched), color: .black, text: "C")
-    private lazy var brushButton: UIButton = generateButton(selector: #selector(handleBrushBtnTouched), color: .blue, text: "B")
-    private lazy var eraserButton: UIButton = generateButton(selector: #selector(handleEraserBtnTouched), color: .magenta, text: "E")
+    private lazy var colorButton: UIButton = generateButton(selector: #selector(handleColorBtnTouched), color: .black, image: nil)
+    private lazy var brushButton: UIButton = generateButton(selector: #selector(handleBrushBtnTouched), image: #imageLiteral(resourceName: "icons8-paint-brush-48"))
+    private lazy var eraserButton: UIButton = generateButton(selector: #selector(handleEraserBtnTouched), image: #imageLiteral(resourceName: "icons8-erase-60"))
     
-    public var colorBtnTouchedWorker: (() -> Void)?
-    public var brushBtnTouchedWorker: (() -> Void)?
-    public var eraserBtnTouchedWorker: (() -> Void)?
+    var colorBtnTouchedWorker: (() -> Void)?
+    var brushBtnTouchedWorker: (() -> Void)?
+    var eraserBtnTouchedWorker: (() -> Void)?
     
     @objc private func handleColorBtnTouched() {
         colorBtnTouchedWorker?()
@@ -40,6 +45,10 @@ class SketchToolBar: UIView {
     
     @objc private func handleEraserBtnTouched() {
         eraserBtnTouchedWorker?()
+    }
+    
+    func changeColorOfColorButton(to: UIColor) {
+        colorButton.backgroundColor = to
     }
     
     private lazy var toolsStackView: UIStackView = {
