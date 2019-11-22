@@ -49,6 +49,12 @@ class SketchViewController: UIViewController {
     }
     
     private func setupToolBarWorkers() {
+        sketchToolBar.undoBtnTouchedWorker = { [weak self] in
+            self?.sketchView.undo()
+        }
+        sketchToolBar.redoBtnTouchedWorker = { [weak self] in
+            self?.sketchView.redo()
+        }
         sketchToolBar.colorBtnTouchedWorker = { [weak self] in
             self?.showColorPickerView()
         }

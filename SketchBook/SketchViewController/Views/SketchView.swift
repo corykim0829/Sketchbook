@@ -21,6 +21,7 @@ class SketchView: UIView {
     public var currentTool: SketchTool?
     
     private var pathArray: [SketchTool] = []
+    private var redoArray: [SketchTool] = []
     
     private var currentPoint: CGPoint?
     private var previousPoint: CGPoint?
@@ -119,18 +120,40 @@ class SketchView: UIView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchesMoved(touches, with: event)
         pathToImage()
+        redoArray.removeAll()
         setNeedsDisplay()
         currentTool = nil
     }
     
-    private func pathToImage() {
+    private func pathToImage(isUndoing: Bool = false) {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
         
-        imageOfPath?.draw(in: self.bounds)
-        currentTool?.draw()
-        
+        if isUndoing {
+            imageOfPath = nil
+            pathArray.forEach({ $0.draw() })
+        } else {
+            imageOfPath?.draw(in: self.bounds)
+            currentTool?.draw()
+        }
+
         imageOfPath = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
+    }
+    
+    func undo() {
+        guard let tool: SketchTool = pathArray.popLast() else { return }
+        currentTool = nil
+        self.redoArray.append(tool)
+        pathToImage(isUndoing: true)
+        setNeedsDisplay()
+    }
+    
+    func redo() {
+        guard let tool: SketchTool = redoArray.popLast() else { return }
+        currentTool = nil
+        self.pathArray.append(tool)
+        pathToImage(isUndoing: true)
+        setNeedsDisplay()
     }
     
     var currentLineWidth: CGFloat {
