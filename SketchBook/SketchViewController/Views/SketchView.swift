@@ -125,10 +125,10 @@ class SketchView: UIView {
         currentTool = nil
     }
     
-    private func pathToImage(isUndoing: Bool = false) {
+    private func pathToImage(fromAllPath: Bool = false) {
         UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
         
-        if isUndoing {
+        if fromAllPath {
             imageOfPath = nil
             pathArray.forEach({ $0.draw() })
         } else {
@@ -140,11 +140,17 @@ class SketchView: UIView {
         UIGraphicsEndImageContext()
     }
     
+    func didRotate() {
+        pathToImage(fromAllPath: true)
+        print(self.frame.size)
+        setNeedsDisplay()
+    }
+    
     func undo() {
         guard let tool: SketchTool = pathArray.popLast() else { return }
         currentTool = nil
         self.redoArray.append(tool)
-        pathToImage(isUndoing: true)
+        pathToImage(fromAllPath: true)
         setNeedsDisplay()
     }
     
@@ -152,7 +158,7 @@ class SketchView: UIView {
         guard let tool: SketchTool = redoArray.popLast() else { return }
         currentTool = nil
         self.pathArray.append(tool)
-        pathToImage(isUndoing: true)
+        pathToImage(fromAllPath: true)
         setNeedsDisplay()
     }
     

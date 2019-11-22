@@ -86,6 +86,14 @@ class SketchViewController: UIViewController {
         [transparentView, colorPickerView, brushPickerView].forEach({ $0.removeFromSuperview() })
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            self?.sketchView.didRotate()
+        }, completion:  nil)
+    }
+    
     private func setupUI() {
         view.backgroundColor = .white
         view.addSubview(statusCoverBar)
